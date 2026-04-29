@@ -93,6 +93,7 @@ export type AlertSeverity = "info" | "warning" | "critical";
 export interface AlertItem {
   title: string;
   message: string;
+  why: string;
   severity: AlertSeverity;
 }
 

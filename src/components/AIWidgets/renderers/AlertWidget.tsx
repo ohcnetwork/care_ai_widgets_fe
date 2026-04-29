@@ -1,10 +1,26 @@
-import { AlertTriangle, Info, ShieldAlert } from "lucide-react";
+import {
+  AlertTriangle,
+  ChevronDown,
+  ChevronRight,
+  Info,
+  ShieldAlert,
+} from "lucide-react";
+import { useState } from "react";
 
-import { AlertOutput, AlertSeverity } from "@/components/AIWidgets/types";
+import {
+  AlertItem,
+  AlertOutput,
+  AlertSeverity,
+} from "@/components/AIWidgets/types";
 
 const SEVERITY_CONFIG: Record<
   AlertSeverity,
-  { icon: typeof Info; container: string; iconClass: string; title: string }
+  {
+    icon: typeof Info;
+    container: string;
+    iconClass: string;
+    title: string;
+  }
 > = {
   info: {
     icon: Info,
@@ -33,35 +49,48 @@ export function AlertWidget({ output }: { output: AlertOutput }) {
         {output.title}
       </h4>
 
-      {output.alerts.map((alert, i) => {
-        const config = SEVERITY_CONFIG[alert.severity] ?? SEVERITY_CONFIG.info;
-        const Icon = config.icon;
-
-        return (
-          <div
-            key={i}
-            className={`flex items-start gap-2.5 rounded-md border px-3 py-2.5 ${config.container}`}
-          >
-            <Icon className={`mt-0.5 h-4 w-4 shrink-0 ${config.iconClass}`} />
-            <div className="min-w-0 flex-1">
-              <p className={`text-xs font-medium ${config.title}`}>
-                {alert.title}
-              </p>
-              <p className="mt-0.5 text-[12px] leading-relaxed">
-                {alert.message}
-              </p>
-            </div>
-            <span
-              className={`shrink-0 rounded border px-1.5 py-px text-[10px] font-medium uppercase tracking-wide ${config.container}`}
-            >
-              {alert.severity}
-            </span>
-          </div>
-        );
-      })}
+      {output.alerts.map((alert, i) => (
+        <AlertRow key={i} alert={alert} />
+      ))}
 
       {output.source_note && (
         <p className="text-[11px] italic text-gray-400">{output.source_note}</p>
+      )}
+    </div>
+  );
+}
+
+function AlertRow({ alert }: { alert: AlertItem }) {
+  const [expanded, setExpanded] = useState(false);
+  const config = SEVERITY_CONFIG[alert.severity] ?? SEVERITY_CONFIG.info;
+  const Icon = config.icon;
+
+  return (
+    <div className={`rounded-md border ${config.container}`}>
+      <button
+        type="button"
+        onClick={() => setExpanded((v) => !v)}
+        className="flex w-full items-center gap-2.5 px-3 py-2 text-left"
+      >
+        <Icon className={`h-4 w-4 shrink-0 ${config.iconClass}`} />
+        <p className={`min-w-0 flex-1 text-xs font-medium ${config.title}`}>
+          {alert.title}
+        </p>
+        {expanded ? (
+          <ChevronDown className="h-3 w-3 shrink-0 opacity-50" />
+        ) : (
+          <ChevronRight className="h-3 w-3 shrink-0 opacity-50" />
+        )}
+        <span
+          className={`shrink-0 rounded border px-1.5 py-px text-[10px] font-medium uppercase tracking-wide ${config.container}`}
+        >
+          {alert.severity}
+        </span>
+      </button>
+      {expanded && alert.why && (
+        <div className="border-t border-current/10 px-3 py-1.5 text-[11px] leading-relaxed opacity-80">
+          {alert.why}
+        </div>
       )}
     </div>
   );

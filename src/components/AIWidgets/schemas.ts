@@ -99,9 +99,10 @@ export const SCHEMAS: Record<WidgetType, Record<string, unknown>> = {
           properties: {
             title: { type: "string" },
             message: { type: "string" },
+            why: { type: "string" },
             severity: { type: "string", enum: ["info", "warning", "critical"] },
           },
-          required: ["title", "message", "severity"],
+          required: ["title", "message", "why", "severity"],
         },
       },
       source_note: { type: "string" },
@@ -120,5 +121,5 @@ export const TYPE_HINTS: Record<WidgetType, string> = {
   score:
     "Return a clinical score: a title (e.g., 'NEWS2 Score'), the numeric score, optional scale (e.g., '/ 21'), severity ('low' | 'moderate' | 'high' | 'critical'), a one-sentence interpretation, and optional components (each with name, the human-readable value used, and the points it contributed).",
   alert:
-    "Return a list of alerts, each with a short title, a descriptive message, and a severity of 'info' | 'warning' | 'critical'. Order by severity (critical first). Include a top-level title for the alert group.",
+    "Return a list of alerts ordered by severity (critical first). Each alert has a short title, a brief message, a 'why' explaining the reasoning behind the severity classification, and severity ('info' | 'warning' | 'critical').",
 };

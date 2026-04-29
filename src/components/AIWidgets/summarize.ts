@@ -88,6 +88,7 @@ function alertOutputToText(out: AlertOutput): string {
       `[${alert.severity.toUpperCase()}] ${alert.title}`,
       `  ${alert.message}`,
     );
+    if (alert.why) parts.push(`  Why: ${alert.why}`);
   });
   if (out.source_note) parts.push("", out.source_note);
   return parts.join("\n").trim();

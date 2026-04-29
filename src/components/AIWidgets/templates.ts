@@ -77,9 +77,8 @@ export const TEMPLATES: WidgetTemplate[] = [
     name: "Clinical alerts",
     type: "alert",
     model: "gpt-5.4-mini",
-    description:
-      "Surface multiple prioritised clinical alerts from the encounter.",
+    description: "Prioritised clinical alerts from encounter data.",
     prompt:
-      "Review this patient's encounter data — vitals, labs, medications, allergies, active conditions, and recent observations — and generate a list of clinical alerts ordered by severity (critical first, then warning, then info). Each alert should have a short title, a concise message explaining the concern and any recommended action, and a severity of 'critical', 'warning', or 'info'. Examples: critical for life-threatening lab values or vitals outside safe range; warning for potential drug interactions, overdue medications, or trending-bad vitals; info for reminders like upcoming reviews or routine screenings. Return at least one alert. Include a source_note: 'AI-generated alerts — verify all findings clinically.'",
+      "Review this patient's encounter data and generate clinical alerts ordered by severity (critical first, then warning, then info). Each alert has: a short title (max 5 words), a brief message (max 10 words), a 'why' explaining the reasoning for the severity classification (one sentence), and severity 'critical', 'warning', or 'info'. Critical: life-threatening values. Warning: potential issues needing attention. Info: routine observations. Keep titles and messages extremely brief; the 'why' can be slightly longer to justify the classification.",
   },
 ];
