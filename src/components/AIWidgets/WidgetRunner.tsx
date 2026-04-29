@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 
 import { request } from "@/lib/request";
 import aiWidgetsApi from "@/components/AIWidgets/api";
+import { AlertWidget } from "@/components/AIWidgets/renderers/AlertWidget";
 import { CitedSummaryWidget } from "@/components/AIWidgets/renderers/CitedSummaryWidget";
 import { MarkdownWidget } from "@/components/AIWidgets/renderers/MarkdownWidget";
 import { RankedListWidget } from "@/components/AIWidgets/renderers/RankedListWidget";
@@ -22,6 +23,7 @@ import { ScoreWidget } from "@/components/AIWidgets/renderers/ScoreWidget";
 import { SCHEMAS } from "@/components/AIWidgets/schemas";
 import { outputToText } from "@/components/AIWidgets/summarize";
 import {
+  AlertOutput,
   AskResponse,
   CitedSummaryOutput,
   MarkdownOutput,
@@ -185,6 +187,9 @@ function RenderedOutput({
     }
     if (widget.type === "score") {
       return <ScoreWidget output={response.output as ScoreOutput} />;
+    }
+    if (widget.type === "alert") {
+      return <AlertWidget output={response.output as AlertOutput} />;
     }
     return null;
   })();

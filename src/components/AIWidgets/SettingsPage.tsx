@@ -1,5 +1,6 @@
 import { useAtom } from "jotai";
 import {
+  AlertTriangle,
   CheckCircle2,
   Gauge,
   ListChecks,
@@ -39,6 +40,7 @@ const TYPE_META: Record<
   "cited-summary": { label: "Cited summary", icon: Quote },
   "ranked-list": { label: "Ranked list", icon: ListChecks },
   score: { label: "Score", icon: Gauge },
+  alert: { label: "Alert", icon: AlertTriangle },
 };
 
 export function AIWidgetsSettingsPage() {

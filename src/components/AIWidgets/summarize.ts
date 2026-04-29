@@ -1,4 +1,5 @@
 import {
+  AlertOutput,
   CitedSummaryOutput,
   MarkdownOutput,
   RankedListOutput,
@@ -18,6 +19,9 @@ export function outputToText(widget: Widget, output: unknown): string {
   }
   if (widget.type === "score") {
     return scoreOutputToText(output as ScoreOutput);
+  }
+  if (widget.type === "alert") {
+    return alertOutputToText(output as AlertOutput);
   }
   return JSON.stringify(output, null, 2);
 }
@@ -71,6 +75,20 @@ function rankedListOutputToText(out: RankedListOutput): string {
     );
   });
   if (out.disclaimer) parts.push("", out.disclaimer);
+  if (out.source_note) parts.push("", out.source_note);
+  return parts.join("\n").trim();
+}
+
+function alertOutputToText(out: AlertOutput): string {
+  const parts: string[] = [];
+  if (out.title) parts.push(out.title);
+  out.alerts?.forEach((alert) => {
+    parts.push(
+      "",
+      `[${alert.severity.toUpperCase()}] ${alert.title}`,
+      `  ${alert.message}`,
+    );
+  });
   if (out.source_note) parts.push("", out.source_note);
   return parts.join("\n").trim();
 }
