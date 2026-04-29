@@ -90,14 +90,16 @@ export function EditorDialog({ open, onOpenChange, widget, onSave }: Props) {
                 setDraft({ ...draft, type: v as WidgetType })
               }
             >
-              <SelectTrigger>
+              <SelectTrigger className="h-auto py-1">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
                 {TYPE_OPTIONS.map((opt) => (
                   <SelectItem key={opt.value} value={opt.value}>
                     <div className="flex flex-col">
-                      <span className="font-medium">{opt.label}</span>
+                      <span className="flex justify-start font-medium ">
+                        {opt.label}
+                      </span>
                       <span className="text-xs text-gray-500">
                         {opt.description}
                       </span>
