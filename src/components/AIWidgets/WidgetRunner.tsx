@@ -68,7 +68,7 @@ export function WidgetRunner({ widget, encounterId }: Props) {
   const errorMsg = errorToString(query.error);
 
   return (
-    <section className="rounded-md border border-gray-200 bg-white">
+    <section className="rounded-md border border-orange-200 bg-white">
       <header className="flex items-center justify-between gap-2 px-2.5 py-1.5">
         <button
           type="button"
