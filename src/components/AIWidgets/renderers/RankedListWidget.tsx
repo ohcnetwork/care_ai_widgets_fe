@@ -1,6 +1,5 @@
-import { AlertTriangle, MapPin, Plus } from "lucide-react";
+import { AlertTriangle, MapPin } from "lucide-react";
 import { useTranslation } from "@/hooks/useTranslation";
-import { toast } from "sonner";
 
 import {
   Popover,
@@ -49,14 +48,14 @@ export function RankedListWidget({ output }: { output: RankedListOutput }) {
             </div>
             <div className="flex shrink-0 items-center gap-2">
               <ScoreBar score={item.score} label={item.score_label} />
-              <button
+              {/* <button
                 type="button"
                 className="inline-flex items-center gap-0.5 rounded border border-transparent px-1.5 py-0.5 text-[11px] text-gray-600 hover:border-gray-200 hover:bg-gray-50 hover:text-gray-900"
                 onClick={() => toast.info(t("ai_widgets__plan_placeholder"))}
               >
                 <Plus className="h-2.5 w-2.5" />
                 {t("ai_widgets__plan")}
-              </button>
+              </button> */}
             </div>
           </li>
         ))}

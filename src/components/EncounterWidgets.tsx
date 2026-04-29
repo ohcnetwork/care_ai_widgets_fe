@@ -1,5 +1,6 @@
 import { useAtomValue } from "jotai";
 import { useMemo } from "react";
+import { Toaster } from "sonner";
 
 import useAuthUser from "@/hooks/useAuthUser";
 
@@ -29,6 +30,7 @@ export default function EncounterWidgets({ encounterId }: Props) {
 
   return (
     <div className="flex flex-col gap-2">
+      <Toaster position="top-center" richColors closeButton />
       {enabled.map((w) => (
         <WidgetRunner key={w.id} widget={w} encounterId={encounterId} />
       ))}
