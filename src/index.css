@@ -1,6 +1,6 @@
 @config '../tailwind.config.js';
 
-.care-ai-widgets-fe-container {
+.care_ai_widgets_fe-container {
   @import "tailwindcss";
 }
 

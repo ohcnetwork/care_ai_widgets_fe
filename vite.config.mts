@@ -11,7 +11,7 @@ export default defineConfig({
       name: "care_ai_widgets_fe",
       filename: "remoteEntry.js",
       exposes: {
-        "./manifest": "./src/manifest.ts",
+        "./manifest": "./src/manifest.tsx",
       },
       shared: [
         "react",
@@ -41,7 +41,7 @@ export default defineConfig({
     },
   },
   preview: {
-    port: 10120,
+    port: 10121,
     allowedHosts: true,
     host: "0.0.0.0",
     cors: {
