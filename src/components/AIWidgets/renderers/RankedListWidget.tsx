@@ -10,9 +10,9 @@ import {
 import { RankedListOutput } from "@/components/AIWidgets/types";
 
 const SCORE_COLOR: Record<string, string> = {
-  Low: "bg-emerald-500",
-  Mod: "bg-amber-500",
-  High: "bg-rose-500",
+  Low: "bg-green-500",
+  Mod: "bg-yellow-500",
+  High: "bg-red-500",
 };
 
 export function RankedListWidget({ output }: { output: RankedListOutput }) {

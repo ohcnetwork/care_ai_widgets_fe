@@ -8,16 +8,16 @@ const SEVERITY_STYLE: Record<ScoreSeverity, { chip: string; bar: string }> = {
     bar: "bg-emerald-500",
   },
   moderate: {
-    chip: "bg-amber-50 text-amber-800 border-amber-200",
-    bar: "bg-amber-500",
+    chip: "bg-yellow-50 text-yellow-800 border-yellow-200",
+    bar: "bg-yellow-500",
   },
   high: {
     chip: "bg-orange-50 text-orange-800 border-orange-200",
     bar: "bg-orange-500",
   },
   critical: {
-    chip: "bg-rose-50 text-rose-800 border-rose-200",
-    bar: "bg-rose-500",
+    chip: "bg-red-50 text-red-800 border-red-200",
+    bar: "bg-red-500",
   },
 };
 
