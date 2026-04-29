@@ -47,7 +47,7 @@ export const TEMPLATES: WidgetTemplate[] = [
     model: "gpt-5.4-mini",
     description: "Reasoned ranking of interactions across active medications.",
     prompt:
-      "Review this patient's active medication list and identify clinically meaningful drug-drug interactions. Rank the most severe or actionable first. For each item: name the interacting pair as 'Drug A + Drug B', give a one-sentence 'why' explaining the mechanism and clinical consequence (and any monitoring or substitution suggestion), a 0-100 severity score, and a score_label of Low/Mod/High. If no significant interactions are found, return a single item stating so with score 0. Include a disclaimer that this reasoning is AI-generated and should be confirmed with a verified interaction reference.",
+      "Review this patient's active medication list and identify clinically meaningful drug-drug interactions. Rank the most severe or actionable first. For each item: name the interacting pair as 'Drug A + Drug B', give a one-sentence 'why' explaining the mechanism and clinical consequence (and any monitoring or substitution suggestion), a 0-100 severity score, and a score_label of Low/Mod/High. If no significant interactions are found, return a single item stating so with score 0. Include a brief disclaimer: 'AI-generated interaction screening only; do verify all findings.'",
   },
   {
     name: "Discharge summary",
