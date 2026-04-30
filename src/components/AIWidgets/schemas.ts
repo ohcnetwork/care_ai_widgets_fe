@@ -88,6 +88,27 @@ export const SCHEMAS: Record<WidgetType, Record<string, unknown>> = {
     },
     required: ["title", "items"],
   },
+  alerts: {
+    type: "object",
+    properties: {
+      title: { type: "string" },
+      alerts: {
+        type: "array",
+        items: {
+          type: "object",
+          properties: {
+            title: { type: "string" },
+            level: { type: "string", enum: ["info", "warning", "critical"] },
+            message: { type: "string" },
+            recommendation: { type: "string" },
+          },
+          required: ["title", "level", "message"],
+        },
+      },
+      source_note: { type: "string" },
+    },
+    required: ["title", "alerts"],
+  },
 };
 
 export const TYPE_HINTS: Record<WidgetType, string> = {
@@ -99,4 +120,6 @@ export const TYPE_HINTS: Record<WidgetType, string> = {
     "Return a ranked list of items, most important first. For each item: name, a one-sentence 'why' rationale, a numeric score 0-100, and a score_label of 'Low' | 'Mod' | 'High'.",
   score:
     "Return a clinical score: a title (e.g., 'NEWS2 Score'), the numeric score, optional scale (e.g., '/ 21'), severity ('low' | 'moderate' | 'high' | 'critical'), a one-sentence interpretation, and optional components (each with name, the human-readable value used, and the points it contributed).",
+  alerts:
+    "Return a list of clinical alerts. Each alert has a title, a level ('info' | 'warning' | 'critical'), a concise message explaining the concern, and an optional recommendation for action. Order alerts by severity (critical first).",
 };

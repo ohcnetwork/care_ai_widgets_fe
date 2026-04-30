@@ -1,4 +1,9 @@
-export type WidgetType = "markdown" | "cited-summary" | "ranked-list" | "score";
+export type WidgetType =
+  | "markdown"
+  | "cited-summary"
+  | "ranked-list"
+  | "score"
+  | "alerts";
 
 export interface Widget {
   id: string;
@@ -80,5 +85,20 @@ export interface RankedListOutput {
     score_label: "Low" | "Mod" | "High";
   }>;
   disclaimer?: string;
+  source_note?: string;
+}
+
+export type AlertLevel = "info" | "warning" | "critical";
+
+export interface AlertItem {
+  title: string;
+  level: AlertLevel;
+  message: string;
+  recommendation?: string;
+}
+
+export interface AlertsOutput {
+  title: string;
+  alerts: AlertItem[];
   source_note?: string;
 }

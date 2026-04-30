@@ -1,5 +1,6 @@
 import { useAtom } from "jotai";
 import {
+  AlertTriangle,
   CheckCircle2,
   Gauge,
   ListChecks,
@@ -39,6 +40,7 @@ const TYPE_META: Record<
   "cited-summary": { label: "Cited summary", icon: Quote },
   "ranked-list": { label: "Ranked list", icon: ListChecks },
   score: { label: "Score", icon: Gauge },
+  alerts: { label: "Alerts", icon: AlertTriangle },
 };
 
 export function AIWidgetsSettingsPage() {
@@ -116,7 +118,8 @@ export function AIWidgetsSettingsPage() {
       ) : (
         <div className="flex flex-col gap-3">
           {widgets.map((w) => {
-            const Icon = TYPE_META[w.type].icon;
+            const meta = TYPE_META[w.type as WidgetType] ?? TYPE_META.markdown;
+            const Icon = meta.icon;
             return (
               <Card key={w.id}>
                 <CardHeader className="flex flex-row items-start justify-between gap-3 space-y-0">
@@ -130,7 +133,7 @@ export function AIWidgetsSettingsPage() {
                           </span>
                         )}
                         <Badge variant="secondary" className="text-xs">
-                          {TYPE_META[w.type].label}
+                          {meta.label}
                         </Badge>
                         {w.enabled && (
                           <Badge
@@ -189,7 +192,9 @@ export function AIWidgetsSettingsPage() {
         </p>
         <div className="grid gap-3 sm:grid-cols-2">
           {TEMPLATES.map((tpl) => {
-            const Icon = TYPE_META[tpl.type].icon;
+            const tplMeta =
+              TYPE_META[tpl.type as WidgetType] ?? TYPE_META.markdown;
+            const Icon = tplMeta.icon;
             return (
               <Card key={tpl.name}>
                 <CardHeader>
@@ -200,7 +205,7 @@ export function AIWidgetsSettingsPage() {
                   <CardDescription>{tpl.description}</CardDescription>
                 </CardHeader>
                 <CardContent className="flex justify-between">
-                  <Badge variant="secondary">{TYPE_META[tpl.type].label}</Badge>
+                  <Badge variant="secondary">{tplMeta.label}</Badge>
                   <Button
                     size="sm"
                     variant="outline"

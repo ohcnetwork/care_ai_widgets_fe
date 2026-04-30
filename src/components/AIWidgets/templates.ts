@@ -73,4 +73,13 @@ export const TEMPLATES: WidgetTemplate[] = [
     prompt:
       "Compute the Modified Early Warning Score (MEWS) for this patient using the most recent vital signs (systolic BP, heart rate, respiratory rate, temperature, level of consciousness via AVPU). Pull values from recent observations and submitted form responses. Title 'MEWS Score'. Provide the total score, scale '/ 14', severity (low 0-2 / moderate 3-4 / high 5 / critical >=6), a one-sentence interpretation including suggested escalation, and components for each parameter (name, value used, contribution). If a parameter is missing, state 'unknown' in the value and contribute 0. Add a source_note: 'Modified Early Warning Score (Subbe et al., 2001)'.",
   },
+  {
+    name: "Clinical alerts",
+    type: "alerts",
+    model: "gpt-5.4-mini",
+    description:
+      "Scan encounter data for actionable clinical alerts by severity.",
+    prompt:
+      "Review this patient's encounter data — vitals, labs, medications, observations, and active conditions — and generate exactly 3 alerts, one for each severity level. You MUST return all three levels: one 'critical' (most urgent finding), one 'warning' (notable concern), and one 'info' (low-risk observation). For each alert provide: a short title (max 8 words), level ('critical', 'warning', or 'info'), a concise message explaining the reasoning with specific values, and an optional recommendation. Order: critical first, then warning, then info. If nothing truly fits a level, still provide the best-fitting observation for that level.",
+  },
 ];

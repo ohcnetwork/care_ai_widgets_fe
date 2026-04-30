@@ -19,6 +19,7 @@ module.exports = {
     "bg-yellow-500",
     "bg-red-500",
     "bg-gray-400",
+    "bg-gray-500",
   ],
   theme: {
     extend: {

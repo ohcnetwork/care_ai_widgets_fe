@@ -49,6 +49,11 @@ const TYPE_OPTIONS: {
     label: "Score",
     description: "Single clinical score with severity and components.",
   },
+  {
+    value: "alerts",
+    label: "Alerts",
+    description: "Multiple alerts with severity levels.",
+  },
 ];
 
 interface Props {
