@@ -48,9 +48,10 @@ src/
 
 ### Prerequisites
 
-- **Node.js** ≥ 18
 - A running [Care frontend](https://github.com/ohcnetwork/care_fe) dev environment
-- The [Care AI backend](https://github.com/ohcnetwork/care_ai_be) plugin providing the `/api/care_ai/encounter/{encounterId}/ask/` endpoint
+
+> [!IMPORTANT]
+> This plugin requires the [**Care AI backend**](https://github.com/ohcnetwork/care_ai_be) plugin to be installed and running on your Care server. It provides the `/api/care_ai/encounter/{encounterId}/ask/` endpoint that powers all AI widget functionality. Without it, widgets will not be able to generate any output.
 
 ### Install & Run
 
